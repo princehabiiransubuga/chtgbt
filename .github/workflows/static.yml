@@ -29,9 +29,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: set up variables
-        env: 
-          CHUCKNORRIS: ${{ secrets.CHUCKNORRIS }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
@@ -44,3 +41,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        env: 
+          CHUCKNORRIS: ${{ secrets.CHUCKNORRIS }}
