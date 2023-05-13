@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 function loadJokes() {
   let searchTerm=document.querySelector("#search-input").value
+  document.querySelector("#card-container").innerHTML=""
   const settings = {
     async: true,
     crossDomain: true,
@@ -40,7 +41,6 @@ function handleScroll() {
 async function displayJokes() {
   isLoading = true;
   $("#loader").show();
-  console.log("show")
   
   let promises = [];
   let htmlString = "";
@@ -56,7 +56,6 @@ async function displayJokes() {
     document.querySelector("#card-container").innerHTML += htmlString;
     isLoading = false;
     $("#loader").hide();
-    console.log("hide")
   });
 }
 
@@ -67,7 +66,7 @@ async function getJokeResponse(joke) {
       type: "POST",
       dataType: "json",
       headers: {
-        Authorization: "Bearer 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",
+        Authorization: "Bearer "+process.env.CHUCKNORRIS,
         "Content-Type": "application/json"
       },
       data: JSON.stringify({
